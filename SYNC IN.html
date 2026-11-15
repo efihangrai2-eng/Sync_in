@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SYNC IN</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap">
+<style>
+:root{--bg:#0B0B0B;--bg2:#171717;--gold:#C6A36A;--beige:#B8A488;--cream:#F5F0E8;--mut:#9a9082;--line:#2a2722;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*,*:before,*:after{box-sizing:border-box;margin:0}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font:300 14px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3,.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:.02em}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select{font:inherit;color:var(--cream);background:transparent;border:1px solid var(--line);padding:12px 14px;width:100%;outline:0}
+input:focus,select:focus{border-color:var(--gold)}select option{background:#131210}
+:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+.sm{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.btn{display:inline-flex;gap:10px;align-items:center;background:var(--gold);color:#17130c;padding:14px 28px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;transition:.3s}
+.btn:hover{background:var(--cream)}.btn.o{background:none;color:var(--cream);border:1px solid var(--line)}.btn.o:hover{border-color:var(--gold);color:var(--gold)}
+.lnk{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}.lnk:hover{color:var(--cream)}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+/* nav */
+header{position:sticky;top:0;z-index:30;background:rgba(11,11,11,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{font-family:"Cormorant Garamond",serif;font-size:20px;letter-spacing:.28em;white-space:nowrap}
+.logo small{display:block;font:300 8px Inter;letter-spacing:.5em;color:var(--gold);margin-top:-2px;text-transform:uppercase}
+.links{display:flex;gap:26px}.links a{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);transition:.3s}.links a:hover,.links a.on{color:var(--gold)}
+.ic{display:flex;gap:14px;align-items:center}.ic button{position:relative;padding:4px}.ic button:hover{color:var(--gold)}
+.bdg{position:absolute;top:-4px;right:-6px;background:var(--gold);color:#111;font-size:9px;min-width:15px;height:15px;border-radius:8px;display:grid;place-items:center}
+.bur{display:none}
+@media(max-width:900px){.links{position:fixed;inset:64px 0 auto 0;top:calc(64px + env(safe-area-inset-top,0px));background:var(--bg);flex-direction:column;padding:12px 20px 24px;gap:0;border-bottom:1px solid var(--line);transform:translateY(-120%);transition:.35s;z-index:-1}.links.open{transform:none}.links a{padding:14px 0;border-bottom:1px solid var(--line);font-size:12px}.bur{display:block}.acc{display:none}}
+/* hero */
+.hero{position:relative;min-height:560px;display:flex;align-items:center;overflow:hidden;background:linear-gradient(115deg,#0e0d0b 0 38%,#6a5a43 38.2%,#a58d6a 100%)}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,#0B0B0B 15%,transparent 60%)}
+.hero .art{position:absolute;right:4%;bottom:-6%;height:112%;width:46%;z-index:1}
+.hero .wrap{position:relative;z-index:2;width:100%}
+.hero h1{font-size:clamp(44px,8vw,92px);line-height:1;margin:18px 0 22px}.hero p{max-width:320px;margin-bottom:30px;color:var(--cream)}
+@media(max-width:700px){.hero{min-height:620px;align-items:flex-end;padding-bottom:50px}.hero .art{width:90%;right:-12%;height:70%;bottom:auto;top:0;opacity:.8}.hero:after{background:linear-gradient(0deg,#0B0B0B 30%,transparent 80%)}}
+/* sections */
+section{padding:64px 0}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);background:var(--bg2)}
+.feat div{display:flex;gap:16px;align-items:center;justify-content:center;padding:26px 12px;color:var(--gold)}.feat div+div{border-left:1px solid var(--line)}
+.feat b{display:block;font:500 11px Inter;letter-spacing:.18em;color:var(--cream)}.feat span{color:var(--mut);font-size:12px}
+@media(max-width:700px){.feat{grid-template-columns:1fr}.feat div{justify-content:flex-start;padding:18px 20px}.feat div+div{border-left:0;border-top:1px solid var(--line)}}
+.hd{text-align:center;margin-bottom:36px}.hd h2{font-size:clamp(28px,4vw,40px);margin-top:8px}
+.row{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px}.row h2{font-size:26px}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:800px){.cats{grid-template-columns:1fr 1fr}}
+.cat{position:relative;aspect-ratio:3/4;overflow:hidden;display:block}.cat .pic{position:absolute;inset:0;transition:transform .7s}.cat:hover .pic{transform:scale(1.06)}
+.cat:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.75),transparent 55%)}
+.cat div.t{position:absolute;z-index:2;bottom:22px;left:0;right:0;text-align:center}.cat h3{font-size:26px;letter-spacing:.14em}.cat .lnk{font-size:10px;border-top:1px solid var(--gold);padding-top:8px;margin-top:6px;display:inline-block}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:620px){.grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+.grid.sh{grid-template-columns:repeat(4,1fr)}@media(max-width:1000px){.grid.sh{grid-template-columns:repeat(3,1fr)}}@media(max-width:620px){.grid.sh{grid-template-columns:repeat(2,1fr)}}
+.pic{background:linear-gradient(160deg,#2b251d,#14110d);display:grid;place-items:center;overflow:hidden}.pic svg{width:100%;height:100%}
+.card .im{position:relative;aspect-ratio:3/4;border:1px solid var(--line);overflow:hidden;display:block}.card .im .pic{width:100%;height:100%;transition:transform .6s}.card:hover .im .pic{transform:scale(1.05)}
+.card .h{position:absolute;top:8px;right:8px;z-index:2;background:rgba(11,11,11,.5);border-radius:50%;width:32px;height:32px;display:grid;place-items:center}.card .h.on svg{fill:var(--gold);stroke:var(--gold)}
+.card .add{position:absolute;left:0;right:0;bottom:0;background:rgba(11,11,11,.9);padding:11px;text-align:center;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);transform:translateY(100%);transition:.3s;z-index:2;width:100%}
+.card:hover .add,.card .add:focus-visible{transform:none}@media(hover:none){.card .add{transform:none}}
+.card h4{font:400 13px Inter;margin-top:10px}.card .pr{color:var(--beige);font-size:13px}
+.sw{display:flex;gap:5px;margin-top:6px}.sw i{width:11px;height:11px;border:1px solid #555;display:block}
+/* promo */
+.promo{display:grid;grid-template-columns:1fr 1.3fr;background:var(--bg2);padding:0;border-block:1px solid var(--line)}
+.promo .tx{padding:60px 8%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}.promo h2{font-size:clamp(34px,4.5vw,52px);line-height:1.1;margin:14px 0}.promo p{color:var(--mut);max-width:280px;margin-bottom:28px}
+.promo .pic{min-height:380px;background:linear-gradient(120deg,#3a2f22,#8a7355)}
+@media(max-width:800px){.promo{grid-template-columns:1fr}.promo .pic{order:-1;min-height:280px}}
+/* journal */
+.jr{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}@media(max-width:800px){.jr{grid-template-columns:1fr}}
+.j{position:relative;aspect-ratio:16/10;display:flex;flex-direction:column;justify-content:end;padding:22px;overflow:hidden;border:1px solid var(--line);transition:.3s}.j:hover{border-color:var(--gold)}
+.j h3{font-size:22px;line-height:1.2;margin:6px 0 12px;max-width:230px}
+.news{background:var(--beige);color:#17130c;padding:36px 0}.news .wrap{display:flex;gap:30px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.news h3{font-size:24px}.news p{font-size:13px;opacity:.75}.news form{display:flex;gap:0;flex:1;min-width:280px;max-width:520px}.news input{background:#d3c3a8;border-color:#a8946f;color:#17130c;flex:1}.news input::placeholder{color:#6d5f48}.news .btn{background:#0B0B0B;color:var(--cream)}
+#nm{font-size:12px;min-height:18px;width:100%;text-align:right}
+footer{padding:56px 0 30px;background:var(--bg)}.fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px}@media(max-width:800px){.fg{grid-template-columns:1fr 1fr}.fg>:first-child{grid-column:1/-1}}
+footer h5{font:500 11px Inter;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}footer li{list-style:none;margin-bottom:9px;color:var(--mut)}footer ul{padding:0}footer li a:hover{color:var(--cream)}
+.cp{border-top:1px solid var(--line);margin-top:40px;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--mut);font-size:12px}
+/* shop / product */
+.pg{padding:40px 0 70px}.pg h1{font-size:clamp(34px,5vw,54px)}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 28px;align-items:center}
+.chip{padding:9px 16px;border:1px solid var(--line);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--mut)}.chip.on,.chip:hover{border-color:var(--gold);color:var(--gold)}
+.bar select{width:auto;margin-left:auto;font-size:12px}
+.pd{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:20px}@media(max-width:800px){.pd{grid-template-columns:1fr;gap:24px}}
+.pd .pic{aspect-ratio:4/5;border:1px solid var(--line)}
+.opt{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 22px}.opt button{min-width:44px;padding:10px 14px;border:1px solid var(--line);font-size:12px}.opt button.on{border-color:var(--gold);color:var(--gold)}
+.opt button.cl{width:34px;height:34px;min-width:0;padding:0;position:relative}.opt button.cl.on{outline:1px solid var(--gold);outline-offset:3px}
+.empty{padding:60px 0;text-align:center;color:var(--mut)}
+/* drawers */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:40;opacity:0;pointer-events:none;transition:.3s}.ov.on{opacity:1;pointer-events:auto}
+.dr{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bg2);z-index:41;transform:translateX(100%);transition:.4s;display:flex;flex-direction:column;border-left:1px solid var(--line);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}.dr.on{transform:none}
+.dr .hh{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line)}.dr .hh h3{font-size:24px}
+.dr .bd{flex:1;overflow:auto;padding:18px 22px}.dr .ft{padding:18px 22px;border-top:1px solid var(--line)}
+.li{display:grid;grid-template-columns:70px 1fr auto;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}.li .pic{aspect-ratio:3/4}.li small{color:var(--mut)}
+.q{display:inline-flex;border:1px solid var(--line);margin-top:8px}.q button{width:30px;height:28px}.q span{width:30px;text-align:center;line-height:28px}
+.tot{display:flex;justify-content:space-between;margin-bottom:12px;font-size:15px}
+.note{font-size:11px;color:var(--mut);margin-top:10px;text-align:center}
+.md{position:fixed;left:50%;top:50%;transform:translate(-50%,-46%);width:min(420px,92%);max-height:92vh;overflow:auto;background:var(--bg2);border:1px solid var(--line);z-index:42;padding:30px;opacity:0;pointer-events:none;transition:.3s}.md.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
+.md h3{font-size:28px;margin-bottom:4px}.md label{display:block;margin:14px 0 6px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--mut)}
+.tabs{display:flex;gap:20px;margin:16px 0 4px;border-bottom:1px solid var(--line)}.tabs button{padding:8px 0;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}.tabs .on{color:var(--gold);border-bottom:1px solid var(--gold)}
+.err{color:#d98b7a;font-size:12px;margin-top:10px;min-height:16px}
+#sr{position:fixed;inset:0;z-index:50;background:rgba(11,11,11,.97);padding:calc(24px + env(safe-area-inset-top,0px)) 20px 20px;overflow:auto;display:none}#sr.on{display:block}
+#sr input{font-size:22px;border:0;border-bottom:1px solid var(--gold);padding:14px 0;font-family:"Cormorant Garamond",serif}
+#tst{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:var(--gold);color:#17130c;padding:12px 22px;font-size:12px;letter-spacing:.08em;opacity:0;pointer-events:none;transition:.3s;z-index:60;max-width:92%;text-align:center}#tst.on{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<button class="bur" id="bur" aria-label="Menu"><svg class="i" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+<a href="#" class="logo">SYNC IN<small>syncin.com</small></a>
+<nav class="links" id="links">
+<a href="#" data-r="">Home</a><a href="#shop-men" data-r="shop-men">Men</a><a href="#shop-women" data-r="shop-women">Women</a><a href="#shop-new" data-r="shop-new">New Arrivals</a><a href="#shop" data-r="shop">Collections</a><a href="#shop-accessories" data-r="shop-accessories">Accessories</a><a href="#about" data-r="about">About Us</a>
+</nav>
+<div class="ic">
+<button id="bs" aria-label="Search"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+<button id="bw" aria-label="Wishlist"><svg class="i" viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></svg><span class="bdg" id="wc">0</span></button>
+<button id="bc" aria-label="Bag"><svg class="i" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="bdg" id="cc">0</span></button>
+<button id="ba" class="acc" aria-label="Sign in"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> <span id="an" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;margin-left:4px">Sign in</span></button>
+</div></div></header>
+
+<main id="app"></main>
+
+<div class="news"><div class="wrap">
+<div><h3 class="serif">Be the first to know</h3><p>Get early access to new collections, exclusive offers, and style updates.</p></div>
+<form id="nf" novalidate><input id="ne" type="email" placeholder="Enter your email" aria-label="Email"><button class="btn" type="submit">Subscribe</button></form>
+<div id="nm"></div></div></div>
+
+<footer><div class="wrap">
+<div class="fg">
+<div><a href="#" class="logo">SYNC IN<small>syncin.com</small></a><p style="color:var(--mut);max-width:320px;margin-top:16px">Premium essentials in considered neutrals. Founded by Rai in Nepal, SYNC IN makes timeless clothing for the modern wardrobe: fewer pieces, better made, worn for years.</p></div>
+<div><h5>Shop</h5><ul><li><a href="#shop-men">Men</a></li><li><a href="#shop-women">Women</a></li><li><a href="#shop-tops">Tops</a></li><li><a href="#shop-accessories">Accessories</a></li></ul></div>
+<div><h5>Help</h5><ul><li><a href="mailto:efihangrai2@gmail.com">Contact Us</a></li><li><a href="#about">About Us</a></li><li><a href="#privacy">Privacy Policy</a></li><li><a href="#terms">Terms and Conditions</a></li><li><a href="#shipping">Shipping Policy</a></li><li><a href="#returns">Return and Refund Policy</a></li></ul></div>
+<div><h5>Contact</h5><ul><li><a href="mailto:efihangrai2@gmail.com">efihangrai2@gmail.com</a></li><li>Customer support: Sunday to Friday, 10am to 6pm (Nepal time)</li><li style="display:flex;gap:14px;margin-top:14px">
+<a href="#" data-p="Instagram" aria-label="Instagram"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></svg></a>
+<a href="#" data-p="Facebook" aria-label="Facebook"><svg class="i" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
+<a href="#" data-p="TikTok" aria-label="TikTok"><svg class="i" viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5M14 3c.5 3 2.5 4.5 5 4.5"/></svg></a></li></ul></div>
+</div>
+<div class="cp"><span>&copy; 2026 SYNC IN. All prices in NPR.</span><span>Designed with passion by Rai.</span></div>
+</div></footer>
+
+<div class="ov" id="ov"></div>
+<aside class="dr" id="dc" aria-label="Shopping bag"></aside>
+<aside class="dr" id="dw" aria-label="Wishlist"></aside>
+<div class="md" id="md" role="dialog" aria-label="Account"></div>
+<div id="sr"><div class="wrap"><div style="display:flex;gap:14px;align-items:center"><input id="si" placeholder="Search shirts, trousers, bags" aria-label="Search"><button id="sx" aria-label="Close search"><svg class="i" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div><div id="sres" style="margin-top:30px"></div></div></div>
+<div id="tst"></div>
+
+<script>
+const EMAIL="efihangrai2@gmail.com";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const CL={black:["Black","#1b1b1b"],sand:["Sand","#c9b79c"],stone:["Stone","#8c7d68"],cream:["Cream","#e8dfcf"],olive:["Olive","#6b6a4a"],navy:["Navy","#2a3040"],denim:["Denim","#4a5d78"]};
+// id, name, category, price (NPR), colors, shape, flag
+const P=[
+[1,"Relaxed Fit Polo","tops",3990,["black","sand","stone"],"polo","new"],
+[2,"Linen Blend Shirt","men",4790,["cream","sand","stone"],"shirt","new"],
+[3,"Premium Cotton Tee","tops",2390,["black","cream","stone"],"tee","new"],
+[4,"Tailored Trousers","men",5590,["sand","stone","black"],"trouser","new"],
+[5,"Utility Overshirt","men",5290,["black","olive","sand"],"jacket","new"],
+[6,"Ribbed Knit Polo","tops",4290,["cream","stone","sand"],"polo","new"],
+[7,"Modern Blazer","women",9490,["sand","black","stone"],"blazer","best"],
+[8,"Oversized T-Shirt","tops",2550,["stone","cream"],"tee","best"],
+[9,"Straight Fit Jeans","men",4490,["denim","black"],"trouser","best"],
+[10,"Textured Knit Polo","tops",3990,["black","stone","cream"],"polo","best"],
+[11,"Relaxed Shorts","men",3030,["sand","olive","stone"],"short","best"],
+[12,"Canvas Tote Bag","accessories",2870,["black","sand"],"bag","best"],
+[13,"Wrap Linen Dress","women",6890,["cream","sand"],"dress","new"],
+[14,"Structured Cap","accessories",1890,["black","stone"],"cap",""]
+];
+const D={
+tee:"M30 20L12 36l9 11 8-5v58h42V42l8 5 9-11-18-16q-12 10-20 10T30 20z",
+polo:"M30 20L12 36l9 11 8-5v58h42V42l8 5 9-11-18-16-9 10-6 10-6-10-9-10z",
+shirt:"M30 20L10 40l8 9 10-7v60h44V42l10 7 8-9-20-20-12 8-8 12-8-12-12-8z",
+jacket:"M32 18L8 42l6 62h12l2-52v54h44V52l2 52h12l6-62-24-24-18 10-12 12-12-12-18-10z",
+blazer:"M34 16L12 44l6 62h10l2-46 10 46h20l10-46 2 46h10l6-62-22-28-16 14-14 24-14-24-16-14z",
+trouser:"M32 14h36l6 98H55L50 52l-5 60H26z",
+short:"M30 28h40l6 52H54l-4-26-4 26H24z",
+dress:"M38 14l-4 34-14 62h60L66 48l-4-34-12 12z",
+bag:"M24 52h52l6 56H18z",
+cap:"M18 74q0-34 32-34t32 34l-12 4q-20-6-40 0z"};
+const X={bag:"M36 52c0-26 28-26 28 0",cap:"M18 74q-6 8 6 12l20-8",jacket:"M50 40v62",shirt:"M50 42v62",polo:"M50 30v14",blazer:"M50 62v44",dress:"M50 24v10"};
+function art(shape,col,extra){const c=(CL[col]||CL.sand)[1];
+return `<svg viewBox="0 0 100 124" aria-hidden="true"><defs><linearGradient id="g${shape}${col}" x1="0" x2="1"><stop offset="0" stop-color="${c}"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></linearGradient></defs><ellipse cx="50" cy="116" rx="30" ry="3" fill="#000" opacity=".4"/><path d="${D[shape]}" fill="url(#g${shape}${col})" stroke="rgba(255,255,255,.12)" stroke-width=".6"/>${X[shape]?`<path d="${X[shape]}" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="1"/>`:""}${extra||""}</svg>`}
+const money=n=>"NPR "+n.toLocaleString("en-IN");
+const ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let cart=ld("sic_cart",[]),wish=ld("sic_wish",[]),user=ld("sic_user",null);
+const byId=id=>P.find(p=>p[0]==id);
+function toast(m){const t=$("#tst");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2400)}
+function card(p){const[id,n,c,pr,cols,sh]=p,on=wish.includes(id);
+return `<article class="card"><div class="im"><button class="h ${on?"on":""}" data-w="${id}" aria-label="Wishlist"><svg class="i" viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></svg></button><a href="#product-${id}" aria-label="${n}"><div class="pic">${art(sh,cols[0])}</div></a><button class="add" data-a="${id}">Add to bag</button></div><h4><a href="#product-${id}">${n}</a></h4><div class="pr">${money(pr)}</div><div class="sw">${cols.map(k=>`<i style="background:${CL[k][1]}" title="${CL[k][0]}"></i>`).join("")}</div></article>`}
+const arrow=`<svg class="i" style="width:14px;height:14px" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>`;
+function home(){
+const nw=P.filter(p=>p[6]=="new").slice(0,6),bs=P.filter(p=>p[6]=="best").slice(0,6);
+const cats=[["Men","men","jacket","#3a342b","navy"],["Women","women","blazer","#4a4036","cream"],["Tops","tops","shirt","#2d2a25","stone"],["Accessories","accessories","bag","#3b3128","black"]];
+return `<section class="hero" style="padding:0"><div class="art">${art("jacket","sand").replace("<defs>","<defs>")}</div><div class="wrap"><div class="sm">New Collection</div><h1>TIMELESS<br>BY NATURE</h1><p>Premium essentials crafted for the modern wardrobe.</p><a class="btn" href="#shop">Shop now ${arrow}</a></div></section>
+<div class="feat"><div><svg class="i" viewBox="0 0 24 24"><path d="M5 19C5 9 11 5 19 5c0 9-4 14-12 14zM5 19l7-7"/></svg><p><b>PREMIUM FABRICS</b><span>Carefully selected materials</span></p></div><div><svg class="i" viewBox="0 0 24 24"><path d="M6 4h12l3 5-9 11L3 9z"/></svg><p><b>TIMELESS DESIGN</b><span>Built to last beyond trends</span></p></div><div><svg class="i" viewBox="0 0 24 24"><path d="M12 3l8 4v10l-8 4-8-4V7zM12 12l8-5M12 12v9M12 12L4 7"/></svg><p><b>WORLDWIDE SHIPPING</b><span>Delivering luxury anywhere</span></p></div></div>
+<section><div class="wrap"><div class="hd"><div class="sm">Shop by category</div><h2>Elevated Essentials</h2></div><div class="cats">${cats.map(c=>`<a class="cat" href="#shop-${c[1]}"><div class="pic" style="background:linear-gradient(160deg,${c[2]=="bag"?"#4a3d2e":"#6b5a44"},${c[3]}) ">${art(c[2],c[4])}</div><div class="t"><h3>${c[0].toUpperCase()}</h3><span class="lnk">Shop now</span></div></a>`).join("")}</div></div></section>
+<section style="padding-top:10px"><div class="wrap"><div class="row"><span class="sm">New arrivals</span><a class="lnk" href="#shop-new">View all ${arrow}</a></div><div class="grid">${nw.map(card).join("")}</div></div></section>
+<section class="promo"><div class="tx"><div class="sm">Summer collection</div><h2>Light. Refined.<br>Effortless.</h2><p>Breathable fabrics. Relaxed fits. Designed for sunlit days and cool evenings.</p><a class="btn" href="#shop">Explore collection ${arrow}</a></div>
+<div class="pic"><svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%"><path d="M60 40h280" stroke="#8a6b3f" stroke-width="5"/><path d="M60 40v250M340 40v250" stroke="#8a6b3f" stroke-width="4"/>${["#e4d7c0","#cdbb9c","#a89170","#7d6a50","#4b4136"].map((c,i)=>`<g transform="translate(${70+i*52} 46) scale(.62)"><path d="M50 0v10" stroke="#8a6b3f" stroke-width="3"/><path d="M${D.shirt.replace(/M|z/g,"")?"":""}" /><path transform="translate(-8 0)" d="${D.shirt}" fill="${c}" stroke="rgba(0,0,0,.25)" stroke-width="1"/></g>`).join("")}</svg></div></section>
+<section><div class="wrap"><div class="row"><span class="sm">Best sellers</span><a class="lnk" href="#shop-best">View all ${arrow}</a></div><div class="grid">${bs.map(card).join("")}</div></div></section>
+<section style="padding-top:0"><div class="wrap"><div class="hd"><div class="sm">From the journal</div><h2>Style. Culture. Timeless.</h2></div><div class="jr">
+${[["Style guide","5 Ways to Elevate Your Everyday Look","linear-gradient(135deg,#4a3d2e,#171410)"],["Culture","The Art of Timeless Living","linear-gradient(135deg,#6b5a44,#1d1812)"],["Care tips","How to Care for Your Clothes the Right Way","linear-gradient(135deg,#2e2922,#645641)"]].map(j=>`<a class="j" href="#" data-p="${j[1]}" style="background:${j[2]}"><span class="sm">${j[0]}</span><h3>${j[1]}</h3><span class="lnk">Read more</span></a>`).join("")}</div></div></section>`}
+function shop(f){
+const T={"":"All Collections",men:"Men",women:"Women",tops:"Tops",accessories:"Accessories",new:"New Arrivals",best:"Best Sellers"};
+const chips=Object.keys(T);
+return `<div class="pg"><div class="wrap"><div class="sm">Shop</div><h1>${T[f]||"All Collections"}</h1><div class="bar">${chips.map(k=>`<a class="chip ${k==f?"on":""}" href="#shop${k?"-"+k:""}">${k?T[k]:"All"}</a>`).join("")}<select id="so" aria-label="Sort"><option value="">Featured</option><option value="pa">Price: low to high</option><option value="pd">Price: high to low</option><option value="n">Name A–Z</option></select></div><div class="grid sh" id="gl"></div></div></div>`}
+function fillShop(f){let l=P.filter(p=>!f||p[2]==f||p[6]==f);const s=$("#so").value;
+if(s=="pa")l.sort((a,b)=>a[3]-b[3]);if(s=="pd")l.sort((a,b)=>b[3]-a[3]);if(s=="n")l.sort((a,b)=>a[1].localeCompare(b[1]));
+$("#gl").innerHTML=l.length?l.map(card).join(""):`<div class="empty">Nothing here yet. Try another category.</div>`}
+let sel={};
+function product(id){const p=byId(id);if(!p)return `<div class="pg wrap empty">Product not found. <a class="lnk" href="#shop">Back to shop</a></div>`;
+const[,n,c,pr,cols,sh]=p;sel={id,color:cols[0],size:sh=="bag"||sh=="cap"?"One size":"M"};
+const sizes=sel.size=="One size"?["One size"]:["S","M","L","XL"];
+return `<div class="pg"><div class="wrap"><a class="lnk" href="#shop-${c}">&larr; ${c}</a><div class="pd"><div class="pic" id="pp">${art(sh,sel.color)}</div><div><div class="sm">${c}</div><h1 style="margin:8px 0">${n}</h1><div class="serif" style="font-size:26px;color:var(--beige)">${money(pr)}</div><p style="color:var(--mut);margin:18px 0 24px;max-width:420px">Cut from carefully selected fabric in a relaxed, considered silhouette. Made to be worn season after season and to age well.</p>
+<div class="sm" style="color:var(--mut)">Colour: <span id="cn">${CL[sel.color][0]}</span></div><div class="opt" id="oc">${cols.map((k,i)=>`<button class="cl ${i?"":"on"}" data-c="${k}" style="background:${CL[k][1]};border:1px solid #555" aria-label="${CL[k][0]}"></button>`).join("")}</div>
+<div class="sm" style="color:var(--mut)">Size</div><div class="opt" id="os">${sizes.map((s,i)=>`<button class="${s==sel.size?"on":""}" data-s="${s}">${s}</button>`).join("")}</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="pa">Add to bag</button><button class="btn o" data-w="${id}">${wish.includes(id)?"Saved to wishlist":"Save to wishlist"}</button></div>
+<p class="note" style="text-align:left;margin-top:20px">In stock. Shipping NPR 250, free on orders over NPR 10,000.</p></div></div></div></div>`}
+function about(){return `<div class="pg"><div class="wrap" style="max-width:760px"><div class="sm">About us</div><h1 style="margin:10px 0 24px">Clothing made to last.</h1><p style="font-size:16px;color:var(--mut);margin-bottom:18px">SYNC IN was started by Rai with one idea: a wardrobe should feel effortless. We design a small range of premium essentials in warm neutrals, in fabrics chosen for how they feel and how they age.</p><p style="font-size:16px;color:var(--mut);margin-bottom:28px">Questions, orders, or collaborations? Write to us at <a class="lnk" href="mailto:${EMAIL}" style="text-transform:none;letter-spacing:.05em;font-size:15px">${EMAIL}</a></p><a class="btn" href="#shop">Shop the collection</a></div></div>`}
+const POL={privacy:["Privacy Policy","We collect only the details you give us (name, email, phone, delivery address) to process orders and answer questions. We never ask for or store card numbers. We do not sell your data. Email efihangrai2@gmail.com to see or delete your data."],terms:["Terms and Conditions","By ordering from SYNC IN you agree that prices are in NPR, that orders are confirmed by email, and that stock is limited. If an item is unavailable we will cancel that item and refund any payment made."],shipping:["Shipping Policy","Orders ship within 2 to 4 working days. Shipping is NPR 250, and free on orders over NPR 10,000. For worldwide delivery, email us for a quote."],returns:["Return and Refund Policy","Unworn items with tags can be returned within 7 days of delivery. Email efihangrai2@gmail.com with your order number and we will arrange the return and refund."]};
+function pol(h){return `<div class="pg"><div class="wrap" style="max-width:760px"><div class="sm">SYNC IN · syncin.com</div><h1 style="margin:10px 0 24px">${POL[h][0]}</h1><p style="font-size:16px;color:var(--mut);margin-bottom:28px">${POL[h][1]}</p><p class="note" style="text-align:left">Draft policy: have it reviewed before launch.</p></div></div>`}
+function route(){const h=(location.hash||"").slice(1);let html;
+if(h=="")html=home();else if(h=="about")html=about();else if(POL[h])html=pol(h);else if(h.startsWith("product-"))html=product(+h.slice(8));else if(h.startsWith("shop")){const f=h.slice(5);html=shop(f)}else html=home();
+$("#app").innerHTML=html;if(h.startsWith("shop")){fillShop(h.slice(5));$("#so").onchange=()=>fillShop(h.slice(5))}
+$$(".links a").forEach(a=>a.classList.toggle("on",a.dataset.r==h));$("#links").classList.remove("open");closeAll();window.scrollTo(0,0)}
+addEventListener("hashchange",route);
+function save(){sv("sic_cart",cart);sv("sic_wish",wish);$("#cc").textContent=cart.reduce((a,i)=>a+i.q,0);$("#wc").textContent=wish.length;$("#cc").style.display=cart.length?"grid":"none";$("#wc").style.display=wish.length?"grid":"none"}
+function addCart(id,color,size){const p=byId(id);color=color||p[4][0];size=size||(["bag","cap"].includes(p[5])?"One size":"M");const e=cart.find(i=>i.id==id&&i.c==color&&i.s==size);e?e.q++:cart.push({id,c:color,s:size,q:1});save();toast(p[1]+" added to bag")}
+function tw(id){const i=wish.indexOf(id);i<0?(wish.push(id),toast("Saved to wishlist")):(wish.splice(i,1),toast("Removed from wishlist"));save();$$(`[data-w="${id}"]`).forEach(b=>{b.classList.toggle("on",wish.includes(id));if(b.classList.contains("btn"))b.textContent=wish.includes(id)?"Saved to wishlist":"Save to wishlist"});if($("#dw").classList.contains("on"))drawW()}
+function drawC(){const sub=cart.reduce((a,i)=>a+byId(i.id)[3]*i.q,0);
+const body=cart.map((i,k)=>{const p=byId(i.id);return `<div class="li"><div class="pic">${art(p[5],i.c)}</div><div><a href="#product-${p[0]}">${p[1]}</a><br><small>${CL[i.c][0]} · ${i.s}</small><br><div class="q"><button data-q="${k}" data-d="-1" aria-label="Less">&minus;</button><span>${i.q}</span><button data-q="${k}" data-d="1" aria-label="More">+</button></div></div><div style="text-align:right">${money(p[3]*i.q)}<br><button data-rm="${k}" class="lnk" style="font-size:10px;margin-top:10px">Remove</button></div></div>`}).join("");
+const mail=encodeURIComponent("Order request – SYNC IN (syncin.com)")+"&body="+encodeURIComponent("Hello Rai,\n\nI would like to order:\n"+cart.map(i=>`- ${byId(i.id)[1]} (${CL[i.c][0]}, ${i.s}) x${i.q}`).join("\n")+"\n\nTotal: "+money(sub)+"\n\nName:\nAddress:\nPhone:");
+$("#dc").innerHTML=`<div class="hh"><h3>Your bag</h3><button data-x aria-label="Close"><svg class="i" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div><div class="bd">${body||`<div class="empty">Your bag is empty.<br><br><a class="btn" href="#shop">Start shopping</a></div>`}</div>${cart.length?`<div class="ft"><div class="tot"><span>Subtotal</span><b>${money(sub)}</b></div><button class="btn" style="width:100%;justify-content:center" id="co">Checkout</button><p class="note">Shipping is calculated at checkout.</p></div>`:""}`}
+function drawW(){$("#dw").innerHTML=`<div class="hh"><h3>Wishlist</h3><button data-x aria-label="Close"><svg class="i" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div><div class="bd">${wish.length?wish.map(id=>{const p=byId(id);return `<div class="li"><div class="pic">${art(p[5],p[4][0])}</div><div><a href="#product-${id}">${p[1]}</a><br><small>${money(p[3])}</small><br><button class="lnk" data-a="${id}" style="margin-top:10px;font-size:10px">Add to bag</button></div><button data-w="${id}" class="lnk" style="font-size:10px;align-self:start">Remove</button></div>`}).join(""):`<div class="empty">No saved items yet. Tap the heart on any piece.</div>`}</div>`}
+function closeAll(){["dc","dw","md"].forEach(i=>$("#"+i).classList.remove("on"));$("#ov").classList.remove("on");$("#sr").classList.remove("on")}
+function open(id,fn){closeAll();fn&&fn();$("#"+id).classList.add("on");$("#ov").classList.add("on")}
+function auth(mode){mode=mode||"in";
+if(user){$("#md").innerHTML=`<h3>Hello, ${user.name}</h3><p style="color:var(--mut)">${user.email}</p><h5 class="sm" style="margin:22px 0 6px">My orders</h5>${orders.length?orders.map(o=>`<div class="li" style="grid-template-columns:1fr auto"><div>${o.id}<br><small>${o.date} · ${o.n} items</small></div><div style="text-align:right">${money(o.total)}<br><small>${o.status}</small></div></div>`).join(""):`<p class="note" style="text-align:left">No orders yet.</p>`}<br><button class="btn o" id="so2">Sign out</button><p class="note" style="text-align:left">Demo account stored on this device only.</p>`;return}
+$("#md").innerHTML=`<h3>Welcome</h3><div class="tabs"><button class="${mode=="in"?"on":""}" data-t="in">Sign in</button><button class="${mode=="up"?"on":""}" data-t="up">Register</button></div><form id="af" novalidate>${mode=="up"?`<label>Full name</label><input id="an1" autocomplete="name">`:""}<label>Email</label><input id="ae" type="email" autocomplete="email"><label>Password</label><input id="ap" type="password" autocomplete="${mode=="up"?"new-password":"current-password"}"><div class="err" id="ar"></div><button class="btn" style="width:100%;justify-content:center;margin-top:8px">${mode=="up"?"Create account":"Sign in"}</button></form><p class="note">Demo sign-in only: no real account or server is used.</p>`;
+$("#af").onsubmit=e=>{e.preventDefault();const em=$("#ae").value.trim(),pw=$("#ap").value,nm=mode=="up"?$("#an1").value.trim():"",r=$("#ar");
+if(mode=="up"&&!nm)return r.textContent="Enter your name.";if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em))return r.textContent="Enter a valid email address.";if(pw.length<6)return r.textContent="Password needs at least 6 characters.";
+user={name:nm||em.split("@")[0],email:em};sv("sic_user",user);uiUser();closeAll();toast("Signed in (demo)")}}
+let orders=ld("sic_orders",[]);
+const shipFee=s=>s>=10000?0:250;
+function checkout(){const sub=cart.reduce((a,i)=>a+byId(i.id)[3]*i.q,0);if(!sub)return;const sh=shipFee(sub);
+open("md",()=>{$("#md").innerHTML=`<h3>Checkout</h3><form id="cf" novalidate><label>Full name</label><input id="c1" value="${user?user.name:""}"><label>Email</label><input id="c2" type="email" value="${user?user.email:""}"><label>Phone</label><input id="c3" type="tel"><label>Shipping address</label><input id="c4"><label>City</label><input id="c5"><label>Postal code</label><input id="c6"><label>Payment</label><select id="c7"><option>Cash on Delivery</option><option disabled>eSewa (needs server setup)</option><option disabled>Khalti (needs server setup)</option><option disabled>Card (needs server setup)</option></select><div class="tot" style="margin-top:18px"><span>Subtotal</span><span>${money(sub)}</span></div><div class="tot"><span>Shipping</span><span>${sh?money(sh):"Free"}</span></div><div class="tot"><b>Total</b><b>${money(sub+sh)}</b></div><div class="err" id="cr"></div><button class="btn" style="width:100%;justify-content:center">Place order</button></form><p class="note">Demo checkout: the order is saved on this device and no payment is taken.</p>`;
+$("#cf").onsubmit=e=>{e.preventDefault();const v=i=>$("#c"+i).value.trim(),r=$("#cr");
+if(!v(1)||!v(4)||!v(5)||!v(6))return r.textContent="Fill in your name, address, city and postal code.";
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v(2)))return r.textContent="Enter a valid email address.";
+if(!/^\+?[0-9 -]{7,15}$/.test(v(3)))return r.textContent="Enter a valid phone number.";
+const o={id:"SYN-"+Date.now().toString(36).toUpperCase(),date:new Date().toLocaleDateString(),n:cart.reduce((a,i)=>a+i.q,0),total:sub+sh,status:"Pending (Cash on Delivery)"};
+orders.unshift(o);sv("sic_orders",orders);
+const body=encodeURIComponent(`Order ${o.id}\n`+cart.map(i=>`- ${byId(i.id)[1]} (${CL[i.c][0]}, ${i.s}) x${i.q}`).join("\n")+`\nTotal: ${money(o.total)}\n\n${v(1)}, ${v(3)}\n${v(4)}, ${v(5)} ${v(6)}`);
+cart=[];save();
+$("#md").innerHTML=`<h3>Order placed</h3><p style="color:var(--mut);margin:10px 0">Your order number is <b style="color:var(--gold)">${o.id}</b>. Status: pending, pay on delivery.</p><a class="btn" href="mailto:${EMAIL}?subject=Order%20${o.id}&body=${body}">Email order to store</a><p class="note">Find it later under Account, My orders.</p>`}})}
+function uiUser(){$("#an").textContent=user?user.name.split(" ")[0]:"Sign in"}
+function doSearch(){const q=$("#si").value.trim().toLowerCase(),l=q?P.filter(p=>(p[1]+" "+p[2]+" "+p[4].map(k=>CL[k][0]).join(" ")).toLowerCase().includes(q)):[];
+$("#sres").innerHTML=q?(l.length?`<div class="grid sh">${l.map(card).join("")}</div>`:`<div class="empty">No results for “${q.replace(/</g,"&lt;")}”. Try “polo” or “linen”.</div>`):`<div class="empty">Start typing to search the collection.</div>`}
+document.addEventListener("click",e=>{const t=e.target.closest("button,a");if(!t)return;
+if(t.dataset.w){e.preventDefault();tw(+t.dataset.w)}
+else if(t.dataset.a){e.preventDefault();addCart(+t.dataset.a);if($("#dc").classList.contains("on"))drawC()}
+else if(t.dataset.q!==undefined){const i=cart[+t.dataset.q];i.q+=+t.dataset.d;if(i.q<1)cart.splice(+t.dataset.q,1);save();drawC()}
+else if(t.dataset.rm!==undefined){cart.splice(+t.dataset.rm,1);save();drawC()}
+else if(t.dataset.p){e.preventDefault();toast(t.dataset.p+" is coming soon")}
+else if(t.dataset.c){sel.color=t.dataset.c;$$("#oc button").forEach(b=>b.classList.toggle("on",b==t));$("#cn").textContent=CL[sel.color][0];const p=byId(sel.id);$("#pp").innerHTML=art(p[5],sel.color)}
+else if(t.dataset.s){sel.size=t.dataset.s;$$("#os button").forEach(b=>b.classList.toggle("on",b==t))}
+else if(t.id=="pa"){addCart(sel.id,sel.color,sel.size);open("dc",drawC)}
+else if(t.id=="co")checkout()
+else if(t.dataset.t)auth(t.dataset.t)
+else if(t.id=="so2"){user=null;sv("sic_user",null);uiUser();closeAll();toast("Signed out")}
+else if(t.dataset.x!==undefined)closeAll()});
+$("#bc").onclick=()=>open("dc",drawC);$("#bw").onclick=()=>open("dw",drawW);$("#ba").onclick=()=>open("md",()=>auth("in"));$("#ov").onclick=closeAll;
+$("#bur").onclick=()=>$("#links").classList.toggle("open");
+$("#bs").onclick=()=>{closeAll();$("#sr").classList.add("on");$("#si").focus();doSearch()};$("#sx").onclick=()=>$("#sr").classList.remove("on");$("#si").oninput=doSearch;
+addEventListener("keydown",e=>{if(e.key=="Escape")closeAll()});
+$("#sr").addEventListener("click",e=>{if(e.target.closest("a"))$("#sr").classList.remove("on")});
+$("#nf").onsubmit=e=>{e.preventDefault();const v=$("#ne").value.trim(),m=$("#nm");if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){m.textContent="Please enter a valid email address.";return}
+m.textContent="Thank you. You are on the list (demo).";$("#ne").value=""};
+uiUser();save();route();
+</script>
+</body>
+</html>
